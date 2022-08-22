@@ -6,10 +6,13 @@ phoneticalpha = {
     "A" : "Alpha - Adam",
     "B" : "Bravo - Božena",
     "C" : "Charlie - Cyril",
+    "Č" : "Čeněk",
     "D" : "Delta - David",
+    "Ď" : "Ďáblice",
     "E" : "Echo - Emil",
     "F" : "Foxtrot - František",
     "G" : "Golf - Gustav",
+    "Ch" : "Chrudim",
     "H" : "Hotel - Helena",
     "I" : "India - Ivan",
     "J" : "Juliett - Josef",
@@ -21,8 +24,11 @@ phoneticalpha = {
     "P" : "Papa - Petr",
     "Q" : "Quebec - Quido",
     "R" : "Romeo - Rudolf",
+    "Ř" : "Řehoř",
     "S" : "Sierra - Svatopluk",
+    "Š" : "Šimon/Šárka",
     "T" : "Tango - Tomáš",
+    "Ť" : "Těšnov",
     "U" : "Uniform - Urban",
     "V" : "Victor - Václav",
     "W" : "Whiskey - Dvojité V",
@@ -57,7 +63,6 @@ try:
             for i in CALL:
                 print(phoneticalpha[i])
 
-            
 
             with open("db/"+CALL+".json", "r", encoding='utf-8') as fl:
                 content = fl.read()
@@ -68,7 +73,7 @@ try:
             
             with open("db/"+CALL+".json", "w", encoding='utf-8') as fl:
                 data["Last seen"] = fx.CurTime()
-                datawr = json.dumps(data)
+                datawr = json.dumps(data, ensure_ascii=False, indent=2)
                 print(datawr, file = fl)
                 
 
@@ -80,7 +85,7 @@ try:
                 }
                 print("\n\n"+CALL+":")
                 print("QSO count: "+str(content["QSO count"])+"\nLast seen: "+content["Last seen"])
-                data = json.dumps(content)
+                data = json.dumps(content, ensure_ascii=False, indent=2)
                 print(data, file = fl)
 
 
