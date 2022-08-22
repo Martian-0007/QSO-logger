@@ -21,7 +21,7 @@ phoneticalpha = {
     "P" : "Papa - Petr",
     "Q" : "Quebec - Quido",
     "R" : "Romeo - Rudolf",
-    "S" : "Sierra - Šimon/Šárka",
+    "S" : "Sierra - Svatopluk",
     "T" : "Tango - Tomáš",
     "U" : "Uniform - Urban",
     "V" : "Victor - Václav",
