@@ -9,7 +9,7 @@ try:
        
        
         try:
-            CALL = input("Callsing:\n")
+            CALL = input("\n\nCallsing:\n")
             CALL = CALL.upper()
             
 
@@ -26,7 +26,6 @@ try:
                     "Last seen" : fx.CurTime()
                 }
                 datawr = json.dumps(data)
-                print(datawr)
                 print(datawr, file = fl)
                 
 
