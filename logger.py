@@ -79,6 +79,8 @@ try:
                 stationtype = "No Human Comtrol"
             elif CALL[0:3] in internationalcompetitioncall and len(CALL) == 4:
                 stationtype = "International competition"
+            else:
+                stationtype = "N/A"
 
 
             with open("db/"+CALL+".json", "r", encoding='utf-8') as fl:
