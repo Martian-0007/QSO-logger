@@ -50,6 +50,16 @@ phoneticalpha = {
     "0" : "Zero - Nul/a"
 }
 
+countrycodes = {
+    "OK" : "Czech Rep.",
+    "OL" : "Czech Rep.",
+    "OM" : "Slovak Rep.",
+    "DL" : "Germany",
+    "SP" : "Poland",
+    "OE" : "Austria",
+    "HA" : "Hungary"
+}
+
 
 try:
    
