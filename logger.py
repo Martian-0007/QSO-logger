@@ -1,6 +1,9 @@
 import logfunctions as fx
 import json
 
+clubstationcall = ["OK1K", "OK1O", "OK1O", "OK1R", "OK2K", "OK2O", "OK2R"]
+harecstationcall = ["OK1", "OK2", "OK3", "OK4", "OK5", "OK6", "OK7"]
+internationalcompetitioncall = ["OK1", "OK2", "OK3", "OK4", "OK5", "OK6", "OK7", "OL1", "OL2", "OL3", "OL4", "OL5", "OL6", "OL7", "OL8", "OL9"]
 
 phoneticalpha = {
     "A" : "Alpha - Adam",
@@ -64,12 +67,26 @@ try:
                 print(phoneticalpha[i])
 
 
+            if CALL[0:4] in clubstationcall and len(CALL) == 6:
+                stationtype = "Club"
+            elif not CALL[0:4] in clubstationcall and CALL[0:3] in harecstationcall and len(CALL) in [5, 6]:
+                stationtype = "HAREC"
+            elif CALL[0:3] == "OK8" and len(CALL) in [5, 6]:
+                stationtype = "Foreign country citizen"
+            elif CALL[0:3] == "OK9" and len(CALL) == 6:
+                stationtype = "NOVICE"
+            elif CALL[0:3] == "OK0" and len(CALL) in [4, 5, 6]:
+                stationtype = "No Human Comtrol"
+            elif CALL[0:3] in internationalcompetitioncall and len(CALL) == 4:
+                stationtype = "International competition"
+
+
             with open("db/"+CALL+".json", "r", encoding='utf-8') as fl:
                 content = fl.read()
                 data = json.loads(content)
                 print("\n\n"+CALL+":")
                 data["QSO count"] = data["QSO count"] + 1
-                print("QSO count: "+str(data["QSO count"])+"\nLast seen: "+data["Last seen"])
+                print("QSO count: "+str(data["QSO count"])+"\nLast seen: "+data["Last seen"]+"Station type: "+data["Station type"])
             
             with open("db/"+CALL+".json", "w", encoding='utf-8') as fl:
                 data["Last seen"] = fx.CurTime()
@@ -81,10 +98,11 @@ try:
             with open("db/"+CALL+".json", "a", encoding='utf-8') as fl:
                 content = {
                     "QSO count" : 1,
-                    "Last seen" : fx.CurTime()
+                    "Last seen" : fx.CurTime(),
+                    "Station type" : stationtype
                 }
                 print("\n\n"+CALL+":")
-                print("QSO count: "+str(content["QSO count"])+"\nLast seen: "+content["Last seen"])
+                print("QSO count: "+str(content["QSO count"])+"\nLast seen: "+content["Last seen"]+"\nStation type: "+content["Station type"])
                 data = json.dumps(content, ensure_ascii=False, indent=2)
                 print(data, file = fl)
 
